@@ -35,7 +35,7 @@ export const Index: NextPage<HomeProps> = ({ homes }) => {
       <h2>Juuri sinulle</h2>
       <div className={styles.grid}>
       {homes.map((home) => (
-        <Link key={home.id} href={`/homes//${encodeURIComponent(home.id)}`}>
+        <Link key={home.id} href={`/homes/${encodeURIComponent(home.id)}`}>
           <div className={styles.card}>
             <Image src='/../public/esimerkki_talo.jpg' alt='image of house' width={400} height={400}/>
             <h3>{home.osoite}</h3>
@@ -47,6 +47,7 @@ export const Index: NextPage<HomeProps> = ({ homes }) => {
     </div>
   )
   }
+
   export async function getStaticProps():Promise<GetStaticPropsResult<HomeProps>>  {
     const res = await fetch(`${server}/api/homes`)
     const homes = await res.json()
